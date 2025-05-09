@@ -1,13 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
+import MapaScreen from './MapScreen';
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#318EC5', '#1F5F94']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.container}
+    >
       <StatusBar style="light" />
 
-      {/* Logo do app */}
       <View style={styles.logoContainer}>
         <Image
           source={require('../assets/logo_localiza.png')}
@@ -16,21 +22,19 @@ export default function Home() {
         />
       </View>
 
-      {/* Nome do aplicativo */}
       <Text style={styles.title}>Localiza+</Text>
 
-      {/* Botão de entrar */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MapScreen')}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#318EC5',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 40,
     borderRadius: 8,
-
   },
   buttonText: {
     color: '#fff',
